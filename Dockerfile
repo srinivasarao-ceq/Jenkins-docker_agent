@@ -5,8 +5,8 @@ FROM ubuntu:latest as builder
 RUN apt-get update && apt-get install -y curl unzip
 
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip -o awscliv2.zip && \
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    unzip -o awscliv2.zip \
     ./aws/install \
     apt-get update && apt-get install -y gnupg software-properties-common wget \
     wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg && \
