@@ -16,7 +16,7 @@ pipeline{
         // SSH_KEY_CREDENTIAL = credentials('ansible_node_ec2-user')  // Use the credential ID
     }
 
-    stage{
+    stages{
         stage('Install AWS'){
             steps{
                  sh '''curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
