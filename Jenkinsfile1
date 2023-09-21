@@ -1,6 +1,9 @@
 pipeline{
     agent{
-        dockerfile true 
+        docker{
+            image 'ubuntu:latest'  // Specify the Docker image you want to use
+            args '-u root'        // Optional: Run the container as root
+        }
     }
 
     parameters{
@@ -16,8 +19,11 @@ pipeline{
     stages{
         stage('Install AWS'){
             steps{
-                sh '''aws --version
-                terraform --version'''
+                sh 'apt-get update && apt-get install -y curl unzip'
+                sh '''curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                unzip -o awscliv2.zip
+                ./aws/install'''
+            }          
         }
     }
 }
